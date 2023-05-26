@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/alpharomeo911/frasier_perception/devel/lib/python3/dist-packages",
+        "/home/alpharomeo911/clean_mobiman/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/usr/local/lib/python2.7/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/alpharomeo911/frasier_perception/devel/lib/python3/dist-packages",
+        "/home/alpharomeo911/clean_mobiman/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/usr/local/lib/python2.7/dist-packages"
+    ]
+}
