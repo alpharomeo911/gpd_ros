@@ -53,7 +53,10 @@ DEPENDS PCL
 # CATKIN_DEPENDS cmake_modules eigen_conversions geometry_msgs message_runtime roscpp sensor_msgs std_msgs
 # DEPENDS Eigen OpenCV PCL
 )
-
+catkin_install_python(PROGRAMS
+  src/gpd_ros/publish_best_grasp.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 ###########
 ## Build ##
 ###########
