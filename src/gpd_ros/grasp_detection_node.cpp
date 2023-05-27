@@ -146,6 +146,7 @@ std::vector<int> GraspDetectionNode::getSamplesInBall(const PointCloudRGBA::Ptr&
 
 void GraspDetectionNode::cloud_callback(const sensor_msgs::PointCloud2& msg)
 {
+  pcl_ros::transformPointCloud("/base_link", msg, this->tfpcl, this->listener);
   if (!has_cloud_)
   {
     delete cloud_camera_;
@@ -154,26 +155,26 @@ void GraspDetectionNode::cloud_callback(const sensor_msgs::PointCloud2& msg)
     Eigen::Matrix3Xd view_points(3,1);
     view_points.col(0) = view_point_;
 
-    if (msg.fields.size() == 6 && msg.fields[3].name == "normal_x" && msg.fields[4].name == "normal_y"
-      && msg.fields[5].name == "normal_z")
+    if (tfpcl.fields.size() == 6 && tfpcl.fields[3].name == "normal_x" && tfpcl.fields[4].name == "normal_y"
+      && tfpcl.fields[5].name == "normal_z")
     {
       PointCloudPointNormal::Ptr cloud(new PointCloudPointNormal);
-      pcl::fromROSMsg(msg, *cloud);
+      pcl::fromROSMsg(tfpcl, *cloud);
       cloud_camera_ = new gpd::util::Cloud(cloud, 0, view_points);
-      cloud_camera_header_ = msg.header;
+      cloud_camera_header_ = tfpcl.header;
       ROS_INFO_STREAM("Received cloud with " << cloud_camera_->getCloudProcessed()->size() << " points and normals.");
     }
     else
     {
       PointCloudRGBA::Ptr cloud(new PointCloudRGBA);
-      pcl::fromROSMsg(msg, *cloud);
+      pcl::fromROSMsg(tfpcl, *cloud);
       cloud_camera_ = new gpd::util::Cloud(cloud, 0, view_points);
-      cloud_camera_header_ = msg.header;
+      cloud_camera_header_ = tfpcl.header;
       ROS_INFO_STREAM("Received cloud with " << cloud_camera_->getCloudProcessed()->size() << " points.");
     }
 
     has_cloud_ = true;
-    frame_ = msg.header.frame_id;
+    frame_ = tfpcl.header.frame_id;
   }
 }
 

@@ -4,7 +4,7 @@ project(gpd_ros)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS cmake_modules eigen_conversions message_generation roscpp rospy sensor_msgs std_msgs)
+find_package(catkin REQUIRED COMPONENTS cmake_modules eigen_conversions message_generation roscpp rospy tf pcl_ros sensor_msgs std_msgs)
 
 # PCL
 find_package(PCL 1.9 REQUIRED)
@@ -48,7 +48,7 @@ generate_messages(DEPENDENCIES geometry_msgs sensor_msgs std_msgs)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 INCLUDE_DIRS include
-CATKIN_DEPENDS cmake_modules eigen_conversions geometry_msgs message_runtime roscpp sensor_msgs std_msgs
+CATKIN_DEPENDS cmake_modules eigen_conversions geometry_msgs message_runtime tf pcl_ros roscpp sensor_msgs std_msgs
 DEPENDS PCL
 # CATKIN_DEPENDS cmake_modules eigen_conversions geometry_msgs message_runtime roscpp sensor_msgs std_msgs
 # DEPENDS Eigen OpenCV PCL

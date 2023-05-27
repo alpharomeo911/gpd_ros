@@ -45,11 +45,12 @@
 #include <visualization_msgs/Marker.h>
 #include <visualization_msgs/MarkerArray.h>
 
+#include <tf/transform_listener.h>
 // PCL
 #include <pcl/common/common.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
-
+#include <pcl_ros/transforms.h>
 // GPD
 #include <gpd/util/cloud.h>
 #include <gpd/grasp_detector.h>
@@ -178,6 +179,8 @@ private:
   static const int POINT_CLOUD_2; ///< sensor_msgs/PointCloud2
   static const int CLOUD_INDEXED; ///< gpd/CloudIndexed
   static const int CLOUD_SAMPLES; ///< gpd/CloudSamples
+  tf::TransformListener listener;
+  sensor_msgs::PointCloud2 tfpcl;
 };
 
 #endif /* GRASP_DETECTION_NODE_H_ */
